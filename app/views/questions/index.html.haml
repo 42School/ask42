@@ -1,0 +1,22 @@
+%h1
+  index
+
+%table
+  %tbody
+    %tr
+      %td
+        Question
+      %td
+        Asker
+      %td
+        Quality
+    - @questions.each do |question|
+      %tr
+        %td
+          = question.question
+        %td
+          = question.user
+        %td
+          = simple_form_for @question, :remote => true do |f|
+            = f.
+          = question.vote_count
