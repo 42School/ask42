@@ -1,0 +1,6 @@
+class ChangeVoteTypeInQuestionVoters < ActiveRecord::Migration
+  def change
+    remove_column :question_voters, :vote
+    create_column :question_voters, :vote, :integer
+  end
+end

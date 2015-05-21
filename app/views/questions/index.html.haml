@@ -1,22 +1,29 @@
 %h1
-  index
+  List of questions
 
-%table
-  %tbody
-    %tr
-      %td
-        Question
-      %td
-        Asker
-      %td
-        Quality
-    - @questions.each do |question|
+.navbar-form
+  = link_to 'New question', new_room_question_path, class: "btn btn-info"
+
+
+%table.table
+  %tbody.list
+    - @questions.each_with_index do |question, index|
       %tr
-        %td
+        %td.question
           = question.question
-        %td
-          = question.user
-        %td
-          = simple_form_for @question, :remote => true do |f|
-            = f.
-          = question.vote_count
+        %td.asker
+          = question.user.login
+        %td.votes
+          - if user_signed_in?
+            = link_to "Upvote", vote_path(:question_id => question.id, :vote => "upvote"), :method => :post, remote: :true, class: "btn btn-success vote"
+
+          .vote_count
+            = question.question_voters.map {|x| x.vote}.inject{|sum,x| sum + x }
+          - if user_signed_in?
+            = link_to "Downvote", vote_path(:question_id => question.id, :vote => "downvote"), :method => :post, remote: :true, class: "btn btn-danger vote"
+
+        - if user_signed_in? and (current_user.admin? or RoomsUser.where(:user_id => current_user.id, :room_id => params[:room_id]).first.editor? rescue nil)
+          %td.action
+            = simple_form_for question, :remote => true do |f|
+              = f.input :answered, :as => :hidden, :input_html => {:value => true}
+              = f.submit"Answer", class: "btn btn-success"

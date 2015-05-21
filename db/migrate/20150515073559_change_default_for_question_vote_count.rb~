@@ -1,0 +1,4 @@
+class ChangeDefaultForQuestionVoteCount < ActiveRecord::Migration
+  def change
+  end
+end

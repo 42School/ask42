@@ -1,0 +1,4 @@
+class RemoveVoteCountFromQuestion < ActiveRecord::Migration
+  def change
+  end
+end

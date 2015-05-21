@@ -1,5 +1,15 @@
 Rails.application.routes.draw do
+  devise_for :users
+
   resources :questions
 
-  root "questions#index"
+  resources :rooms do
+    resources :rooms_users, only: [:index, :create]
+    resources :questions
+  end
+
+  post '/rooms/:room_id/question/:question_id/question_voters', :controller => 'questions_voters', :action => "create", as: "vote"
+
+  root "rooms#index"
+
 end

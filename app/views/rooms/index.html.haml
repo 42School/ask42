@@ -1,0 +1,36 @@
+%h1
+  List of rooms
+
+- if user_signed_in? and current_user.admin?
+  .navbar-form
+    = link_to 'New room', new_room_path, class: "btn btn-info"
+
+
+%table.table
+  %tbody
+    %tr
+      %td
+        Room name
+      %td
+        User count
+      %td
+        Actions
+    - @rooms.each do |room|
+      %tr
+        %td.col-lg-6
+          .editable= room.name
+          .editing-name.hidden
+            = simple_form_for room, remote: true do |f|
+              .input-group
+                = f.input :name, class: "form-control", id: "editing", label: false
+                .input-group-btn
+                  = f.submit "Save",  class: "btn btn-success saving"
+        %td
+          = room.rooms_users.count
+        %td
+          = link_to 'Enter', room_questions_path(room), class: "btn btn-success"
+          - if user_signed_in? and (current_user.admin? or RoomsUser.where(:user_id => current_user.id, :room_id => room.id).first.editor? rescue nil)
+            = link_to 'Edit', rooms_path,remote: true, class: "btn btn-info edit"
+            = link_to 'List users', room_rooms_users_path(:room_id => room.id), class: "btn btn-info"
+            - if current_user.admin?
+              = link_to 'Delete', room_path(room), method: :delete, data: { confirm: "Are you sure you want to delete #{room.name}?" }, class: "btn btn-danger"

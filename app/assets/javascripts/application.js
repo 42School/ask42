@@ -12,5 +12,13 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+//= require bootstrap-sprockets
+//= require jquery_nested_form
+//= require list
 //= require_tree .
+
+window.NestedFormEvents.prototype.insertFields = function(content, assoc, link) {
+    var $tr = $(link).closest('tr');
+    return $(content).insertBefore($tr);
+}
+

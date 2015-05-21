@@ -1,7 +1,8 @@
 %h1
   Ask a question
 
-= simple_form_for @question do |f|
-  = f.input :user
+= simple_form_for @questions do |f|
   = f.input :question
+  = f.association :room, as: :hidden
+  = f.input :user_id, as: :hidden, :input_html =>  {:value => current_user.id}
   = f.submit

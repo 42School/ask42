@@ -1,0 +1,24 @@
+= simple_nested_form_for @room, class: "form-horizontal" do |f|
+  %table.table
+    %tbody
+      = f.fields_for :rooms_users, :wrapper => false do |user|
+        %tr.fields
+          %td
+            - if user.object.id
+              = user.object.user.login
+              = user.input :user_id, as: :hidden
+            - else
+              = user.input :user_id, collection: @users_hash
+          %td
+            = user.input :editor, inline_label: true, label: false
+          %td
+            = user.link_to_remove "Remove this user", class: "btn btn-danger pull-right"
+      %tr
+        %td
+          = f.link_to_add "Add user", :rooms_users, class: "btn btn-info"
+        %td
+        %td
+          = f.submit :class => "btn btn-success pull-right"
+
+
+
