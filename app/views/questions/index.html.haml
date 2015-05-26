@@ -18,7 +18,7 @@
             = link_to "Upvote", vote_path(:question_id => question.id, :vote => "upvote"), :method => :post, remote: :true, class: "btn btn-success vote"
 
           .vote_count
-            = question.question_voters.map {|x| x.vote}.inject{|sum,x| sum + x }
+            = question.question_voters.map {|x| x.vote}.inject{|sum,x| sum + x }.to_i
           - if user_signed_in?
             = link_to "Downvote", vote_path(:question_id => question.id, :vote => "downvote"), :method => :post, remote: :true, class: "btn btn-danger vote"
 
