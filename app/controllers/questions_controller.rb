@@ -3,7 +3,7 @@ class QuestionsController < ApplicationController
     @questions = Question.joins(:question_voters).group("questions.id").where(:room_id => params[:room_id]).order("sum(question_voters.vote)").reverse
   end
 
-  def new1
+  def new
     if !user_signed_in?
       redirect_to new_user_session_path
     end
