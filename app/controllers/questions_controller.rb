@@ -33,6 +33,13 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def destroy
+    redirect_to :back unless user_signed_in? and current_user.admin?
+    @question = Question.find(params[:id])
+    @question.delete
+    redirect_to :back
+  end
+
   private
     def question_params
       params.require(:question).permit(:room_id, :question)
