@@ -1,6 +1,6 @@
-%h1
+%h1.text-center
   = Room.find(params[:room_id]).name
-  = link_to 'Ask a question', new_room_question_path, class: "btn btn-info"
+  = link_to 'Ask a question', new_room_question_path, class: "btn btn-default"
 
 
 %table.table.table-hover
