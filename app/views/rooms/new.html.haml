@@ -1,7 +1,7 @@
 %h1
   Create a new room
 
-.navbar-form
+.form-group
   = simple_form_for @room do |f|
-    = f.input :name
-    = f.submit "Create a new room", class: "btn btn-success"
+    = f.input :name, :placeholder => 'name', :class => "form-control", :label => false
+    = f.submit "submit", class: "btn btn-success"

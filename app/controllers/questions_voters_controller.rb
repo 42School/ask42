@@ -6,8 +6,12 @@ class QuestionsVotersController < ApplicationController
       vote = -1
     end
     if user_signed_in?
-      QuestionVoter.create(:user_id => current_user.id, :question_id => params[:question_id], :vote => vote)
-    end
+	  if QuestionVoter.where(user_id: current_user.id, question_id: params[:question_id]).first
+		QuestionVoter.where(user_id: current_user.id, question_id: params[:question_id]).update_all(vote: vote)
+	  else 
+		QuestionVoter.create(user_id: current_user.id, question_id: params[:question_id], vote: vote)
+	  end
+	end
     render :nothing => true
   end
 end

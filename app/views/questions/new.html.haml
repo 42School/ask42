@@ -2,7 +2,7 @@
   Ask a question
 
 = simple_form_for @questions do |f|
-  = f.input :question
+  = f.text_area :question, :class => "form-control"
   = f.association :room, as: :hidden
   = f.input :user_id, as: :hidden, :input_html =>  {:value => current_user.id}
-  = f.submit
+  = f.submit 'Submit', :class => "btn btn-info"

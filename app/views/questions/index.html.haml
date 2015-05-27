@@ -1,29 +1,40 @@
 %h1
-  List of questions
-
-.navbar-form
-  = link_to 'New question', new_room_question_path, class: "btn btn-info"
+  = Room.find(params[:room_id]).name
+  = link_to 'Ask a question', new_room_question_path, class: "btn btn-info"
 
 
-%table.table
+%table.table.table-hover
   %tbody.list
     - @questions.each_with_index do |question, index|
       %tr
-        %td.question
-          = question.question
-        %td.asker
-          = question.user.login
         %td.votes
-          - if user_signed_in?
-            = link_to "Upvote", vote_path(:question_id => question.id, :vote => "upvote"), :method => :post, remote: :true, class: "btn btn-success vote"
+          - if user_signed_in? and question.question_voters.where(user_id: current_user.id).last
+            - if question.question_voters.where(user_id: current_user.id).last.vote > 0
+              .glyphicon.glyphicon-triangle-top.upvote-active
+              .vote_count
+                = question.question_voters.map {|x| x.vote}.inject{|sum,x| sum + x }.to_i
+              = link_to "", vote_path(:question_id => question.id, :vote => "downvote"), :method => :post, remote: :true, class: "glyphicon glyphicon-triangle-bottom downvote"
+            - else
+              = link_to "", vote_path(:question_id => question.id, :vote => "upvote"), :method => :post, remote: :true, class: "glyphicon glyphicon-triangle-top upvote"
+              .vote_count
+                = question.question_voters.map {|x| x.vote}.inject{|sum,x| sum + x }.to_i
+              .glyphicon.glyphicon-triangle-bottom.downvote-active
 
-          .vote_count
-            = question.question_voters.map {|x| x.vote}.inject{|sum,x| sum + x }.to_i
-          - if user_signed_in?
-            = link_to "Downvote", vote_path(:question_id => question.id, :vote => "downvote"), :method => :post, remote: :true, class: "btn btn-danger vote"
+          - elsif user_signed_in?
+            = link_to "", vote_path(:question_id => question.id, :vote => "upvote"), :method => :post, remote: :true, class: "glyphicon glyphicon-triangle-top upvote"
+            .vote_count
+              = question.question_voters.map {|x| x.vote}.inject{|sum,x| sum + x }.to_i
+            = link_to "", vote_path(:question_id => question.id, :vote => "downvote"), :method => :post, remote: :true, class: "glyphicon glyphicon-triangle-bottom downvote"
 
+          - else
+            .vote_count
+              = question.question_voters.map {|x| x.vote}.inject{|sum,x| sum + x }.to_i
+
+        %td.question
+          %p #{question.question}
+          %p.small_info by #{question.user.login} #{time_ago_in_words(question.created_at)} ago
         - if user_signed_in? and (current_user.admin? or RoomsUser.where(:user_id => current_user.id, :room_id => params[:room_id]).first.editor? rescue nil)
           %td.action
             = simple_form_for question, :remote => true do |f|
               = f.input :answered, :as => :hidden, :input_html => {:value => true}
-              = f.submit"Answer", class: "btn btn-success"
+              = f.submit "Answer", class: "btn btn-success"

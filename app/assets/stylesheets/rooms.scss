@@ -1,3 +1,16 @@
 .editor {
   display: hidden;
 }
+
+a.room_link {
+	text-decoration: none;
+	color: $gray;
+}
+a.room_link:hover {
+	color: $gray-dark;
+	text-decoration: none;
+}
+
+td.pull-right {
+	text-align: right;
+}

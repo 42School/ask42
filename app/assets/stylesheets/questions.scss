@@ -1,3 +1,31 @@
 // Place all the styles related to the questions controller here.
 // They will automatically be included in application.sass.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.votes {
+	text-align: center;
+	.glyphicon {
+		color: $gray;
+	}
+	.upvote:hover {
+		color: $brand-success;
+		text-decoration: none
+	}
+	.downvote:hover {
+		color: $brand-danger;
+		text-decoration: none
+	}
+	.upvote-active {
+		color: $brand-success;
+	}
+	.downvote-active {
+		color: $brand-danger;
+	}
+}
+.small_info {
+	color: $gray-light;
+	font-size: small
+}
+textarea {
+	margin: 0;
+	margin-bottom: 10px
+}

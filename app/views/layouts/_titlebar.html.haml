@@ -1,5 +1,10 @@
-.pull-right
-  - if user_signed_in?
-    = link_to "Sign out", destroy_user_session_path, :method => :delete, class: "btn btn-danger"
-  - else
-    = link_to "Sign in", new_user_session_path, class: "btn btn-success"
+.navbar.navbar-default
+  .container
+    .navbar-left.navbar-brand
+      = link_to "Ask42", root_path, class: "navbar-brand"
+    .navbar-text.navbar-right.navbar-brand
+      - if user_signed_in?
+        = current_user.login
+        = link_to "Sign out", destroy_user_session_path, :method => :delete, class: "btn-xs btn btn-danger"
+      - else
+        = link_to "Sign in", new_user_session_path, class: "btn btn-success btn-xs"
