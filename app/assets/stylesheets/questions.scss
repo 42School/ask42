@@ -20,6 +20,9 @@
 	.downvote-active {
 		color: $brand-danger;
 	}
+	a {
+		text-decoration: none;
+	}
 }
 .small_info {
 	color: $gray-light;
@@ -29,3 +32,4 @@ textarea {
 	margin: 0;
 	margin-bottom: 10px
 }
+

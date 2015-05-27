@@ -1,3 +1,22 @@
+body {
+	font-family: 'Open Sans', sans-serif;
+}
+
+.navbar {
+	border-radius: 0px;
+	background-color: $gray-dark;
+	border: 0px;
+	border-bottom: 3px;
+	border-color: $gray;
+	.home-title {
+		a {
+			font-weight: bold;
+			color: $gray-lighter;
+			border: 0px;
+		}
+	}
+}
+
 .editor {
   display: hidden;
 }
@@ -13,4 +32,8 @@ a.room_link:hover {
 
 td.pull-right {
 	text-align: right;
+}
+
+.btn {
+	border-radius: 2px;
 }

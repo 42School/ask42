@@ -1,6 +1,6 @@
-%h1
+%h1.text-center
   = Room.find(params[:room_id]).name
-  = link_to 'Ask a question', new_room_question_path, class: "btn btn-info"
+  = link_to 'Ask a question', new_room_question_path, class: "btn btn-default"
 
 
 %table.table.table-hover
@@ -37,4 +37,5 @@
           %td.action
             = simple_form_for question, :remote => true do |f|
               = f.input :answered, :as => :hidden, :input_html => {:value => true}
-              = f.submit "Answer", class: "btn btn-success"
+              = f.button :submit, "Answer", class: "btn btn-success btn-xs"
+              = link_to 'Delete', question_path(question), method: :delete, data: { confirm: "Are you sure you want to delete this question?" }, class: "btn btn-xs btn-danger"
