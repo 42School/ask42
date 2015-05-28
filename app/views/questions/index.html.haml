@@ -1,5 +1,6 @@
-%h1.text-center= Room.find(params[:room_id]).name
-%p.text-center= link_to 'Ask a question', new_room_question_path, class: "btn btn-default"
+%h1.text-center
+  = Room.find(params[:room_id]).name
+  = link_to 'Ask a question', new_room_question_path, class: "btn btn-default"
 
 
 %table.table.table-hover
@@ -33,9 +34,8 @@
           %p #{question.question}
           %p.small_info by #{question.user.login} #{time_ago_in_words(question.created_at)} ago
         - if user_signed_in? and (current_user.admin? or RoomsUser.where(:user_id => current_user.id, :room_id => params[:room_id]).first.editor? rescue nil)
-          %td.action.col-lg-2.pull-right
+          %td.action
             = simple_form_for question, :remote => true do |f|
               = f.input :answered, :as => :hidden, :input_html => {:value => true}
               = f.button :submit, "Answer", class: "btn btn-success btn-xs"
-            - if user_signed_in? and current_user.admin?
-              = link_to '', question_path(question), method: :delete, data: { confirm: "Are you sure you want to delete this question?" }, class: "btn btn-xs btn-danger glyphicon glyphicon-remove"
+              = link_to 'Delete', question_path(question), method: :delete, data: { confirm: "Are you sure you want to delete this question?" }, class: "btn btn-xs btn-danger"
