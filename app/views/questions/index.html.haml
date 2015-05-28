@@ -5,29 +5,29 @@
 
 %table.table.table-hover
   %tbody.list
-    - @questions.each_with_index do |question, index|
+    - @questions.each do |question|
       %tr
         %td.votes
           - if user_signed_in? and question.question_voters.where(user_id: current_user.id).last
             - if question.question_voters.where(user_id: current_user.id).last.vote > 0
               .glyphicon.glyphicon-triangle-top.upvote-active
-              = content_tag :div, class: "vote_count", :data => {votes: question.question_voters.pluck(:vote)} do
+              = content_tag :div, class: "vote_count", id: question.id do
                 test
               = link_to "", vote_path(:question_id => question.id, :vote => "downvote"), :method => :post, remote: :true, class: "glyphicon glyphicon-triangle-bottom downvote vote", id: "downvote"
             - else
               = link_to "", vote_path(:question_id => question.id, :vote => "upvote"), :method => :post, remote: :true, class: "glyphicon glyphicon-triangle-top upvote vote", id: "upvote"
-              = content_tag "div", class: "vote_count", :data => {votes: question.question_voters.pluck(:vote)} do
+              = content_tag "div", class: "vote_count", id: question.id do
                 test
               .glyphicon.glyphicon-triangle-bottom.downvote-active
 
           - elsif user_signed_in?
             = link_to "", vote_path(:question_id => question.id, :vote => "upvote"), :method => :post, remote: :true, class: "glyphicon glyphicon-triangle-top upvote vote", id: "upvote"
-            = content_tag "div", class: "vote_count", :data => {votes: question.question_voters.pluck(:vote)} do
+            = content_tag "div", class: "vote_count", id: question.id do
               test
             = link_to "", vote_path(:question_id => question.id, :vote => "downvote"), :method => :post, remote: :true, class: "glyphicon glyphicon-triangle-bottom downvote vote", id: "downvote"
 
           - else
-            = content_tag "div", class: "vote_count", :data => {votes: question.question_voters.pluck(:vote)} do
+            = content_tag "div", class: "vote_count", id: question.id do
               test
 
         %td.question
@@ -46,10 +46,10 @@
   %h3.text-center="Answered Questions"
 %table.table.table-hover
   %tbody.list
-    - @questions_answered.each_with_index do |question, index|
+    - @questions_answered.each do |question|
       %tr.active
         %td.votes.small
-          .vote_count
+          .vote_final_count
             = question.question_voters.map {|x| x.vote}.inject{|sum,x| sum + x }.to_i
 
         %td.question.answered

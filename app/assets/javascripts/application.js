@@ -22,3 +22,15 @@ window.NestedFormEvents.prototype.insertFields = function(content, assoc, link) 
     return $(content).insertBefore($tr);
 }
 
+$(function() {
+    if ($(".vote_count").length > 0) {
+        setTimeout(updateCounter, 100);
+    }
+})
+
+function updateCounter (question_id) {
+    for (i = 0; i < $(".vote_count").length; i++) {
+        $.getScript("/questions.js?question_id=" + $(".vote_count")[i].id)
+    }
+    setTimeout(updateCounter, 1000);
+}
