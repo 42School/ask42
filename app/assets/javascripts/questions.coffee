@@ -9,7 +9,15 @@ $('document').ready ->
     $('table tr').each (index, tr) ->
       if $(tr).find('.vote_count').html() >> 0 > elt.innerHTML >> 0
         row.insertAfter tr
-        return
 
+refresh_counter = ->
+  calculate_total counter for counter in $(".vote_count")
 
+calculate_total = (counter) ->
+  total = eval(eval(counter.dataset.votes).join("+"))
+  counter.innerHTML = total
+
+setInterval ->
+    refresh_counter()
+  , 1000
 

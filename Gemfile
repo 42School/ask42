@@ -37,6 +37,9 @@ gem 'sass-rails', '~> 5.0'
 
 gem 'listjs-rails'
 
+#gon for vote counters
+gem 'gon'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

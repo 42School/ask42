@@ -11,24 +11,24 @@
           - if user_signed_in? and question.question_voters.where(user_id: current_user.id).last
             - if question.question_voters.where(user_id: current_user.id).last.vote > 0
               .glyphicon.glyphicon-triangle-top.upvote-active
-              .vote_count
-                = question.question_voters.map {|x| x.vote}.inject{|sum,x| sum + x }.to_i
+              = content_tag :div, class: "vote_count", :data => {votes: question.question_voters.pluck(:vote)} do
+                test
               = link_to "", vote_path(:question_id => question.id, :vote => "downvote"), :method => :post, remote: :true, class: "glyphicon glyphicon-triangle-bottom downvote vote", id: "downvote"
             - else
               = link_to "", vote_path(:question_id => question.id, :vote => "upvote"), :method => :post, remote: :true, class: "glyphicon glyphicon-triangle-top upvote vote", id: "upvote"
-              .vote_count
-                = question.question_voters.map {|x| x.vote}.inject{|sum,x| sum + x }.to_i
+              = content_tag "div", class: "vote_count", :data => {votes: question.question_voters.pluck(:vote)} do
+                test
               .glyphicon.glyphicon-triangle-bottom.downvote-active
 
           - elsif user_signed_in?
             = link_to "", vote_path(:question_id => question.id, :vote => "upvote"), :method => :post, remote: :true, class: "glyphicon glyphicon-triangle-top upvote vote", id: "upvote"
-            .vote_count
-              = question.question_voters.map {|x| x.vote}.inject{|sum,x| sum + x }.to_i
+            = content_tag "div", class: "vote_count", :data => {votes: question.question_voters.pluck(:vote)} do
+              test
             = link_to "", vote_path(:question_id => question.id, :vote => "downvote"), :method => :post, remote: :true, class: "glyphicon glyphicon-triangle-bottom downvote vote", id: "downvote"
 
           - else
-            .vote_count
-              = question.question_voters.map {|x| x.vote}.inject{|sum,x| sum + x }.to_i
+            = content_tag "div", class: "vote_count", :data => {votes: question.question_voters.pluck(:vote)} do
+              test
 
         %td.question
           %p #{question.question}
