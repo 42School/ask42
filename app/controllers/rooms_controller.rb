@@ -41,7 +41,7 @@ class RoomsController < ApplicationController
   def destroy
     redirect_to rooms_path unless user_signed_in? and current_user.admin?
     @room = Room.find(params[:id])
-    @room.delete
+    @room.destroy
     redirect_to rooms_path
   end
 end
