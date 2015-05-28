@@ -17,13 +17,9 @@ body {
 	}
 }
 
-.editor {
-  display: hidden;
-}
-
 a.room_link {
 	text-decoration: none;
-	color: $gray;
+	color: #207391;
 }
 a.room_link:hover {
 	color: $gray-dark;
@@ -36,4 +32,8 @@ td.pull-right {
 
 .btn {
 	border-radius: 2px;
+}
+
+.editor {
+  display: hidden;
 }

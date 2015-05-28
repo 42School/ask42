@@ -1,5 +1,6 @@
 $('document').ready ->
   $('.vote').on 'click', ->
+    location.reload()
     row = $(this).parents("tr:first")
     elt = @parentElement.parentElement.querySelector(".vote_count")
     if @id == 'upvote'

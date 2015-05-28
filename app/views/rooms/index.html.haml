@@ -1,14 +1,14 @@
 %h1
   List of rooms
   - if user_signed_in? and current_user.admin?
-    = link_to 'New room', new_room_path, class: "btn btn-info"
+    = link_to 'New room', new_room_path, class: "btn btn-default"
 
 
 %table.table
   - @rooms.each do |room|
     %tr
       %td.col-lg-6
-        %h3.editable= link_to room.name, room_questions_path(room), :class => "room_link"
+        %h3.editable= link_to room.name, room_questions_path(room)
         .editing-name.hidden
           = simple_form_for room, remote: true do |f|
             .input-group
@@ -38,7 +38,7 @@
     - @rooms.each do |room|
       %tr
         %td.col-lg-6
-          .editable= link_to room.name, room_questions_path(room), :class => "room_link"
+          .editable= room.name
           .editing-name.hidden
             = simple_form_for room, remote: true do |f|
               .input-group

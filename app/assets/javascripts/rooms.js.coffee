@@ -1,7 +1,7 @@
 $('document').ready ->
   $('.edit').on 'click', ->
-    elt = $(this).parent().parent().find(".editable")
-    edit = $(this).parent().parent().find('.editing-name')
+    elt = $(this).parent().parent().parent().find(".editable")
+    edit = $(this).parent().parent().parent().find('.editing-name')
     elt.addClass("hidden")
     edit.find("#editing").value = elt.innerHTML
     edit.removeClass("hidden")
