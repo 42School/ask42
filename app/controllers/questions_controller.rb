@@ -28,7 +28,7 @@ class QuestionsController < ApplicationController
   def update
     @question = Question.find(params[:id])
     if user_signed_in?
-      if @question.question_voters.create(params[:question][:question_voters].permit(:id, :user_id))
+      if @question.update_attributes(params[:question].permit(:answered))
         render :nothing => true
       end
     end
