@@ -1,6 +1,7 @@
 class QuestionsController < ApplicationController
   def index
-    @questions = Question.joins("LEFT JOIN question_voters ON question_voters.question_id = questions.id").group("questions.id").where(:room_id => params[:room_id]).order("sum(question_voters.vote)").reverse
+    @questions_answered = Question.joins("LEFT JOIN question_voters ON question_voters.question_id = questions.id").group("questions.id").where(:room_id => params[:room_id], :answered => true).order("sum(question_voters.vote)").reverse
+    @questions = Question.joins("LEFT JOIN question_voters ON question_voters.question_id = questions.id").group("questions.id").where(:room_id => params[:room_id], :answered => nil).order("sum(question_voters.vote)").reverse
   end
 
   def new
@@ -36,7 +37,7 @@ class QuestionsController < ApplicationController
   def destroy
     redirect_to :back unless user_signed_in? and current_user.admin?
     @question = Question.find(params[:id])
-    @question.delete
+    @question.destroy
     redirect_to :back
   end
 
