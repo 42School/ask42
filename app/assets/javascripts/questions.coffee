@@ -7,19 +7,12 @@ $('document').ready ->
       elt.innerHTML = parseInt(elt.innerHTML, 10) + 1
     else if @id == 'downvote'
       elt.innerHTML = parseInt(elt.innerHTML, 10) - 1
-    $('table tr').each (index, tr) ->
-      if $(tr).find('.vote_count').html() >> 0 > elt.innerHTML >> 0
-        row.insertAfter tr
+    order()
 
-#refresh_counter = ->
-#  calculate_total counter for counter in $(".vote_count")
-#
-#calculate_total = (counter) ->
-#  total = eval(eval(counter.dataset.votes).join("+"))
-#  counter.innerHTML = total
-#
-#
-#setInterval ->
-#    refresh_counter()
-#  , 1000
-
+@order = ->
+  table = $("table:first tr")
+  i = 0
+  while i < table.length - 1
+    if table[i].querySelector(".vote_count").innerHTML >> 0 < table[i + 1].querySelector(".vote_count").innerHTML >> 0
+      table.eq(i).insertAfter table.eq(i + 1)
+    i++

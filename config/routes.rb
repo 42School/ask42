@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     resources :questions
   end
 
+  resources :questions_voters, only: [:index, :create]
+
   post '/rooms/:room_id/question/:question_id/question_voters', :controller => 'questions_voters', :action => "create", as: "vote"
 
   root "rooms#index"

@@ -30,7 +30,8 @@ $(function() {
 
 function updateCounter (question_id) {
     for (i = 0; i < $(".vote_count").length; i++) {
-        $.getScript("/questions.js?question_id=" + $(".vote_count")[i].id)
+        $.getScript("/questions_voters.js?question_id=" + $(".vote_count")[i].id);
     }
-    setTimeout(updateCounter, 1000);
+    order();
+    setTimeout(updateCounter, 10000);
 }

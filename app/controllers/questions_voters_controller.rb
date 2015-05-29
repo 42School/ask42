@@ -1,4 +1,8 @@
 class QuestionsVotersController < ApplicationController
+  def index
+    @votes = QuestionVoter.where(question_id: params[:question_id])
+  end
+
   def create
     if params[:vote] == "upvote"
       vote = 1
