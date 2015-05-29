@@ -13,18 +13,18 @@
               .glyphicon.glyphicon-triangle-top.upvote-active
               = content_tag :div, class: "vote_count", id: question.id do
                 test
-              = link_to "", vote_path(:question_id => question.id, :vote => "downvote"), :method => :post, remote: :true, class: "glyphicon glyphicon-triangle-bottom downvote vote", id: "downvote"
+              = link_to "", room_question_questions_voters_path(:question_id => question.id, :vote => "downvote"), :method => :post, remote: :true, class: "glyphicon glyphicon-triangle-bottom downvote vote", id: "downvote"
             - else
-              = link_to "", vote_path(:question_id => question.id, :vote => "upvote"), :method => :post, remote: :true, class: "glyphicon glyphicon-triangle-top upvote vote", id: "upvote"
+              = link_to "", room_question_questions_voters_path(:question_id => question.id, :vote => "upvote"), :method => :post, remote: :true, class: "glyphicon glyphicon-triangle-top upvote vote", id: "upvote"
               = content_tag "div", class: "vote_count", id: question.id do
                 test
               .glyphicon.glyphicon-triangle-bottom.downvote-active
 
           - elsif user_signed_in?
-            = link_to "", vote_path(:question_id => question.id, :vote => "upvote"), :method => :post, remote: :true, class: "glyphicon glyphicon-triangle-top upvote vote", id: "upvote"
+            = link_to "", room_question_questions_voters_path(:question_id => question.id, :vote => "upvote"), :method => :post, remote: :true, class: "glyphicon glyphicon-triangle-top upvote vote", id: "upvote"
             = content_tag "div", class: "vote_count", id: question.id do
               test
-            = link_to "", vote_path(:question_id => question.id, :vote => "downvote"), :method => :post, remote: :true, class: "glyphicon glyphicon-triangle-bottom downvote vote", id: "downvote"
+            = link_to "", room_question_questions_voters_path(:question_id => question.id, :vote => "downvote"), :method => :post, remote: :true, class: "glyphicon glyphicon-triangle-bottom downvote vote", id: "downvote"
 
           - else
             = content_tag "div", class: "vote_count", id: question.id do

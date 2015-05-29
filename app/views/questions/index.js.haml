@@ -1,1 +1,0 @@
-= "$('##{params[:question_id]}').html(#{Question.find(params[:question_id]).question_voters.pluck(:vote).sum})"
