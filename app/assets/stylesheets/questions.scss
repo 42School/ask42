@@ -39,3 +39,41 @@ textarea {
 .answered {
 	color: $gray-light
 }
+
+tr .action a {
+	visibility: hidden
+}
+tr:hover .action a {
+	visibility: visible
+}
+
+.btn {
+	background: transparent;
+}
+.btn-danger {
+	color: $brand-danger;
+}
+.btn-success {
+	color: $brand-success;
+}
+.btn-info {
+	color: $brand-info;
+}
+
+a.room .room-elem {
+	color: $gray;
+}
+a.room:hover {
+	text-decoration: none;
+}
+li {
+	text-decoration: none;
+	border: solid $gray-lighter 1px;
+	margin: 10px;
+	padding: 10px;
+	list-style: none;
+}
+
+li:hover {
+	background-color: $gray-lighter;
+}

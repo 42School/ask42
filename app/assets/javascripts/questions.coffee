@@ -16,3 +16,4 @@ $('document').ready ->
     if table[i].querySelector(".vote_count").innerHTML >> 0 < table[i + 1].querySelector(".vote_count").innerHTML >> 0
       table.eq(i).insertAfter table.eq(i + 1)
     i++
+
