@@ -6,12 +6,10 @@ Rails.application.routes.draw do
   resources :rooms do
     resources :rooms_users, only: [:index, :create]
     resources :questions do
-      resources :questions_voters, only: [:index, :create]
+      resources :questions_voters, only: [:index, :create] do
+
+      end
     end
   end
-
-
-  # post '/rooms/:room_id/question/:question_id/question_voters', :controller => 'questions_voters', :action => "create", as: "vote"
-
 
 end

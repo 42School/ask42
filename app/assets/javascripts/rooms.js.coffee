@@ -11,7 +11,6 @@ $('document').ready ->
   $('.saving').on 'click', ->
     elt = $(this).closest("td").find(".editable")
     edit = $(this).closest("td").find('.editing-name')
-    debugger
     elt.removeClass("hidden")
     elt.find(".edited").html(edit.find(".form-group").find("input").val())
     edit.addClass("hidden")

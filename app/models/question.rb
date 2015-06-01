@@ -7,4 +7,8 @@ class Question < ActiveRecord::Base
 
   validates :question, presence: true, allow_blank: false
 
+  def answer
+    self.update_attributes(:answered => true)
+  end
+
 end

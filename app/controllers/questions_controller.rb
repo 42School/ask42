@@ -41,6 +41,10 @@ class QuestionsController < ApplicationController
     redirect_to :back
   end
 
+  def answer
+
+  end
+
   private
     def question_params
       params.require(:question).permit(:room_id, :question)

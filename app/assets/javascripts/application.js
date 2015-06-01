@@ -30,7 +30,7 @@ $(function() {
 
 function updateCounter (question_id) {
     for (i = 0; i < $(".vote_count").length; i++) {
-        $.getScript("/questions_voters.js?question_id=" + $(".vote_count")[i].id);
+        $.getScript("/rooms/" + $("h1").data().roomId + "/questions/" + $(".vote_count")[i].id + "/questions_voters.js?question_id=" + $(".vote_count")[i].id);
     }
     order();
     setTimeout(updateCounter, 10000);
