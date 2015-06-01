@@ -8,7 +8,8 @@ class QuestionsController < ApplicationController
     if !user_signed_in?
       redirect_to new_user_session_path
     end
-    @questions = Room.find(params[:room_id]).questions.new()
+    @room = Room.find(params[:room_id])
+    @questions = @room.questions.new()
   end
 
   def create

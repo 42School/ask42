@@ -1,7 +1,7 @@
 %h1
   Ask a question
 
-= simple_form_for @questions do |f|
+= simple_form_for [@room, @questions] do |f|
   = f.text_area :question, :class => "form-control", :required => true
   = f.association :room, as: :hidden
   = f.input :user_id, as: :hidden, :input_html =>  {:value => current_user.id}
