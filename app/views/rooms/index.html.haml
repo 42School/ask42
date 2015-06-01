@@ -1,36 +1,35 @@
 %h1.text-center
-  List of rooms
   - if user_signed_in? and current_user.admin?
     %p= link_to 'New room', new_room_path, class: "btn btn-default"
 
 - if user_signed_in? and current_user.admin?
   %ul
-  - @rooms.each do |room|
-    %li.room-elem.text-center
-      %h3.editable
-        =link_to room.name, room_questions_path(room)
-      .editing-name.hidden
-        = simple_form_for room, remote: true do |f|
-          .input-group
-            = f.input :name, class: "form-control", id: "editing", label: false
-            .input-group-btn
-              = f.submit "Save",  class: "btn btn-success saving"
-      %p.small_info
-        = pluralize(room.questions.count, 'question')
-        = pluralize(room.rooms_users.count, 'user')
+    - @rooms.each do |room|
+      %li.room-elem.text-center
+        %h3.editable
+          =link_to room.name, room_questions_path(room)
+        .editing-name.hidden
+          = simple_form_for room, remote: true do |f|
+            .input-group
+              = f.input :name, class: "form-control", id: "editing", label: false
+              .input-group-btn
+                = f.submit "Save",  class: "btn btn-success saving"
+        %p.small_info
+          = pluralize(room.questions.count, 'question')
+          = pluralize(room.rooms_users.count, 'user')
 
-      .btn-group
-        = link_to 'Edit', rooms_path,remote: true, class: "btn btn-default edit"
-        = link_to 'List users', room_rooms_users_path(:room_id => room.id), class: "btn btn-default"
-        - if user_signed_in? and current_user.admin?
-          = link_to 'Delete', room_path(room), method: :delete, data: { confirm: "Are you sure you want to delete #{room.name}?" }, class: "btn btn-danger"
+        .btn-group
+          = link_to 'Edit', rooms_path,remote: true, class: "btn btn-default edit"
+          = link_to 'List users', room_rooms_users_path(:room_id => room.id), class: "btn btn-default"
+          - if user_signed_in? and current_user.admin?
+            = link_to 'Delete', room_path(room), method: :delete, data: { confirm: "Are you sure you want to delete #{room.name}?" }, class: "btn btn-danger"
 
 - else
   %ul
-  - @rooms.each do |room|
-    =link_to room_questions_path(room), :class => "room" do
-      %li.room-elem.text-center
-        %h2= room.name
-        .small_info
-          = pluralize(room.questions.count, 'question') 
-          = pluralize(room.rooms_users.count, 'user')
+    - @rooms.each do |room|
+      =link_to room_questions_path(room), :class => "room" do
+        %li.room-elem.text-center
+          %h2= room.name
+          .small_info
+            = pluralize(room.questions.count, 'question')
+            = pluralize(room.rooms_users.count, 'user')

@@ -1,6 +1,6 @@
 %h1.text-center{data: {room_id: params[:room_id]}}
   = Room.find(params[:room_id]).name
-  .center= link_to 'Ask a question', new_room_question_path, class: "btn btn-default"
+%p.text-center= link_to 'Ask a question', new_room_question_path, class: "btn btn-default"
 
 
 %table.table.table-hover

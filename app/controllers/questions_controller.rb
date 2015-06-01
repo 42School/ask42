@@ -18,9 +18,13 @@ class QuestionsController < ApplicationController
       @question.user_id = current_user.id
       @question.save
 
-      if !RoomsUser.where(:user_id => current_user.id).first
+      if !RoomsUser.where(:user_id => current_user.id, :room_id => params[:question][:room_id]).first
         @rooms_user = RoomsUser.create(:user_id => current_user.id, :room_id => params[:question][:room_id])
       end
+	  if !QuestionVoter.where(:user_id => current_user.id, :question_id => @question.id).first
+		  QuestionVoter.create(:user_id => current_user.id, :question_id => @question.id, vote: 1)
+	  end
+	
     end
 
     redirect_to room_questions_path(:room_id => params[:question][:room_id])
