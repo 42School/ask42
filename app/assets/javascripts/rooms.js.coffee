@@ -12,6 +12,6 @@ $('document').ready ->
     elt = $(this).parents(".room-elem").find(".editable")
     edit = $(this).parents(".room-elem").find('.editing-name')
     elt.removeClass("hidden")
-    elt.find(".edited").html(edit.find(".form-group").find("input").val())
+    elt.find("a").html(edit.find(".form-group").find("input").val())
     edit.addClass("hidden")
-    edit.closest("tr").find(".edit").removeClass("disabled")
+    edit.parent().find(".edit").removeClass("disabled")

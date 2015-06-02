@@ -7,7 +7,7 @@
     - @rooms.each do |room|
       %li.room-elem.text-center
         %h3.editable
-          =link_to room.name, room_questions_path(room)
+          = link_to room.name, room_questions_path(room)
         .editing-name.hidden
           = simple_form_for room, remote: true do |f|
             .input-group
