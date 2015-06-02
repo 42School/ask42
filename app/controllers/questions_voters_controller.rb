@@ -15,6 +15,10 @@ class QuestionsVotersController < ApplicationController
       else
         QuestionVoter.create(user_id: current_user.id, question_id: params[:question_id], vote: vote)
       end
+	  question = Question.find(params[:question_id])
+      if !RoomsUser.where(:user_id => current_user.id, :room_id => question.room_id).first
+        RoomsUser.create(:user_id => current_user.id, :room_id => question.room_id)
+      end
 	end
     render :nothing => true
   end
