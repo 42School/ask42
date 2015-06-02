@@ -2,6 +2,9 @@ class QuestionsController < ApplicationController
   def index
     @questions_answered = Question.joins("LEFT JOIN question_voters ON question_voters.question_id = questions.id").group("questions.id").where(:room_id => params[:room_id], :answered => true).order("questions.answered, sum(question_voters.vote)").reverse
     @questions = Question.joins("LEFT JOIN question_voters ON question_voters.question_id = questions.id").group("questions.id").where(:room_id => params[:room_id]).order("questions.answered, sum(question_voters.vote)").reverse
+	if user_signed_in?
+		@user_is_editor = RoomsUser.where(user_id: current_user.id, room_id: params[:room_id], editor: true).first
+	end
   end
 
   def new
@@ -32,16 +35,16 @@ class QuestionsController < ApplicationController
   def update
     @question = Question.find(params[:id])
     if user_signed_in? and (current_user.admin? or RoomsUser.where(:user_id => current_user.id, :room_id => params[:room_id]).first.editor? rescue nil)
-      if @question.update_attributes(:answered => true)
-        redirect_to :back
-      end
-    end
+      @question.update_attributes(:answered => true)
+	end
+	render :nothing => true
   end
 
   def destroy
-    redirect_to :back unless user_signed_in? and current_user.admin?
-    @question = Question.find(params[:id])
-    @question.destroy
+		@question = Question.find(params[:id])
+    if user_signed_in? and (current_user.admin? or RoomsUser.where(:user_id => current_user.id, :room_id => @question.room_id).first.editor? rescue nil)
+		@question.destroy
+	end
     redirect_to :back
   end
 

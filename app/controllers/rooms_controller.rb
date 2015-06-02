@@ -1,6 +1,10 @@
 class RoomsController < ApplicationController
   def index
     @rooms = Room.all.order(:id)
+		if user_signed_in?
+				@user_questions = Question.where(user_id: current_user.id)
+				@user_rooms = RoomsUser.where(user_id: current_user.id, editor: true).pluck(:room_id)
+		end
   end
 
   def show

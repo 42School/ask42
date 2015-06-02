@@ -34,5 +34,6 @@ function reloadCounterView (question_id) {
         $.getScript("/rooms/" + $("h1").data().roomId + "/questions/" + $(".vote_count")[i].id + "/questions_voters.js?question_id=" + $(".vote_count")[i].id);
     }
     order();
+    answered();
     setTimeout(reloadCounterView, 10000);
 }

@@ -1,5 +1,5 @@
-%h1.text-center
-  - if user_signed_in? and current_user.admin?
+- if user_signed_in? and current_user.admin?
+  %h1.text-center
     %p= link_to 'New room', new_room_path, class: "btn btn-default"
 
 - if user_signed_in? and current_user.admin?
@@ -33,5 +33,11 @@
           .small_info
             = pluralize(room.questions.count, 'question')
             = pluralize(room.rooms_users.count, 'user')
-            -if user_signed_in? and RoomsUser.where(:user_id => current_user.id, :room_id => room.id, :editor => true).first
-              %span.info-elem editor
+            -if user_signed_in? and @user_rooms.include?(room.id)
+              %span.small-elem.warning
+                editor
+            -if user_signed_in? and @user_questions.where(room_id: room.id).count > 0
+              %span.small-elem.info
+                =pluralize(@user_questions.where(room_id: room.id).count, 'question') + " asked"
+              %span.small-elem.success
+                #{@user_questions.where(room_id: room.id, answered: true).count} answered

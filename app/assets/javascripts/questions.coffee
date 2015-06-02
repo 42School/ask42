@@ -1,4 +1,6 @@
 $('document').ready ->
+	$('.btn-answer').on 'click', ->
+			$(this).parents("tr").addClass("answered")
   $('.vote').on 'click', ->
     row = $(this).parents("tr:first")
     elt = @parentElement.parentElement.querySelector(".vote_count")
@@ -20,7 +22,6 @@ $('document').ready ->
         td.children(".downvote").addClass("downvote-active").removeClass("downvote")
         elt.innerHTML = parseInt(elt.innerHTML, 10) - 1
     order()
-    answered()
 
 @order = ->
   table = $("table:first tr[data-unanswered]")
@@ -33,4 +34,4 @@ $('document').ready ->
 
 @answered = ->
   unanswered = $("table:first tr:not([data-unanswered])")
-  unanswered.addClass("active")
+  unanswered.addClass("answered")

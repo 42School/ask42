@@ -28,12 +28,24 @@
 	color: $gray-light;
 	font-size: small
 }
-.info-elem {
+
+.small-elem {
 	border-radius: 2px;
-	border: solid 1px $brand-info;
+	padding-left: 3px;
+	padding-right: 3px;
+	margin-right: 4px;
+}
+.info {
 	color: $brand-info;
-	padding-left: 2px;
-	padding-right: 2px;
+	background-color: lighten($brand-info, 30%);
+}
+.success {
+	color: $brand-success;
+	background-color: lighten($brand-success, 30%);
+}
+.warning {
+	color: $brand-warning;
+	background-color: lighten($brand-warning, 30%);
 }
 
 textarea {
@@ -84,4 +96,18 @@ li {
 
 li:hover {
 	background-color: $gray-lighter;
+}
+.upvote-active, .downvote-active {
+		pointer-events: none;
+		cursor: default;
+}
+.answered {
+	background-color: lighten($brand-info, 40%)
+}
+.answered #upvote,
+.answered #downvote {
+	visibility: hidden;
+}
+.answered .btn-info {
+	visibility: hidden !important;
 }
