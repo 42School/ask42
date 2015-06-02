@@ -6,7 +6,7 @@
 %table.table.table-hover
   %tbody.list
     - @questions.each do |question|
-      %tr
+      %tr{data: {unanswered: !question.answered?}}
         %td.votes
           =render "votes", question: question
 

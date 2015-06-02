@@ -1,7 +1,7 @@
 class QuestionsController < ApplicationController
   def index
-    @questions_answered = Question.joins("LEFT JOIN question_voters ON question_voters.question_id = questions.id").group("questions.id").where(:room_id => params[:room_id], :answered => true).order("sum(question_voters.vote)").reverse
-    @questions = Question.joins("LEFT JOIN question_voters ON question_voters.question_id = questions.id").group("questions.id").where(:room_id => params[:room_id], :answered => nil).order("sum(question_voters.vote)").reverse
+    @questions_answered = Question.joins("LEFT JOIN question_voters ON question_voters.question_id = questions.id").group("questions.id").where(:room_id => params[:room_id], :answered => true).order("questions.answered, sum(question_voters.vote)").reverse
+    @questions = Question.joins("LEFT JOIN question_voters ON question_voters.question_id = questions.id").group("questions.id").where(:room_id => params[:room_id]).order("questions.answered, sum(question_voters.vote)").reverse
   end
 
   def new

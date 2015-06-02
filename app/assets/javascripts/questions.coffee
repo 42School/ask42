@@ -20,12 +20,17 @@ $('document').ready ->
         td.children(".downvote").addClass("downvote-active").removeClass("downvote")
         elt.innerHTML = parseInt(elt.innerHTML, 10) - 1
     order()
+    answered()
 
 @order = ->
-  table = $("table:first tr")
+  table = $("table:first tr[data-unanswered]")
   i = 0
   while i < table.length - 1
-    if table[i].querySelector(".vote_count").innerHTML >> 0 < table[i + 1].querySelector(".vote_count").innerHTML >> 0
+    if (table[i].querySelector(".vote_count").innerHTML >> 0 < table[i + 1].querySelector(".vote_count").innerHTML >> 0)
       table.eq(i).insertAfter table.eq(i + 1)
     i++
 
+
+@answered = ->
+  unanswered = $("table:first tr:not([data-unanswered])")
+  unanswered.addClass("active")
