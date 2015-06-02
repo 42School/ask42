@@ -13,7 +13,6 @@ $('document').ready ->
         elt.innerHTML = parseInt(elt.innerHTML, 10) + 1
     else if @id == 'downvote' && td.children(".downvote-active").length == 0
       if td.children('.upvote-active').length > 0
-        console.log(td.children('.upvote-active'))
         td.children(".upvote-active").addClass("upvote").removeClass("upvote-active")
         td.children(".downvote").addClass("downvote-active").removeClass("downvote")
         elt.innerHTML = parseInt(elt.innerHTML, 10) - 2

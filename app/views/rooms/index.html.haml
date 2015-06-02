@@ -33,3 +33,5 @@
           .small_info
             = pluralize(room.questions.count, 'question')
             = pluralize(room.rooms_users.count, 'user')
+            -if user_signed_in? and RoomsUser.where(:user_id => current_user.id, :room_id => room.id, :editor => true).first
+              %span.info-elem editor

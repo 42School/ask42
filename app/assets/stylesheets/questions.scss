@@ -28,6 +28,14 @@
 	color: $gray-light;
 	font-size: small
 }
+.info-elem {
+	border-radius: 2px;
+	border: solid 1px $brand-info;
+	color: $brand-info;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
 textarea {
 	margin: 0;
 	margin-bottom: 10px

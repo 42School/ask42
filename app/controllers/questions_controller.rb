@@ -24,7 +24,6 @@ class QuestionsController < ApplicationController
 	  if !QuestionVoter.where(:user_id => current_user.id, :question_id => @question.id).first
 		  QuestionVoter.create(:user_id => current_user.id, :question_id => @question.id, vote: 1)
 	  end
-	
     end
 
     redirect_to room_questions_path(:room_id => params[:question][:room_id])
@@ -32,9 +31,9 @@ class QuestionsController < ApplicationController
 
   def update
     @question = Question.find(params[:id])
-    if user_signed_in?
-      if @question.update_attributes(params[:question].permit(:answered))
-        render :nothing => true
+    if user_signed_in? and (current_user.admin? or RoomsUser.where(:user_id => current_user.id, :room_id => params[:room_id]).first.editor? rescue nil)
+      if @question.update_attributes(:answered => true)
+        redirect_to :back
       end
     end
   end
