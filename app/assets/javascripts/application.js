@@ -25,6 +25,7 @@ window.NestedFormEvents.prototype.insertFields = function(content, assoc, link) 
 $(function() {
     if ($(".vote_count").length > 0) {
         setTimeout(updateCounter, 100);
+        setInterval(order, 1000);
     }
 })
 
