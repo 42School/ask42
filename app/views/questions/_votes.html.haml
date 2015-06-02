@@ -1,14 +1,14 @@
 - if user_signed_in? and question.question_voters.where(user_id: current_user.id).last
 
   - if question.question_voters.where(user_id: current_user.id).last.vote > 0
-    .upvote-active.glyphicon.glyphicon-triangle-top
+    = link_to "", room_question_questions_voters_path(:question_id => question.id, :vote => "upvote"), :method => :post, remote: :true, class: "glyphicon glyphicon-triangle-top upvote-active vote", id: "upvote"
     .vote_count{:id => question.id}
     = link_to "", room_question_questions_voters_path(:question_id => question.id, :vote => "downvote"), :method => :post, remote: :true, class: "glyphicon glyphicon-triangle-bottom downvote vote", id: "downvote"
 
   - else
     = link_to "", room_question_questions_voters_path(:question_id => question.id, :vote => "upvote"), :method => :post, remote: :true, class: "glyphicon glyphicon-triangle-top upvote vote", id: "upvote"
     .vote_count{:id => question.id}
-    .downvote-active.glyphicon.glyphicon-triangle-bottom
+    = link_to "", room_question_questions_voters_path(:question_id => question.id, :vote => "downvote"), :method => :post, remote: :true, class: "glyphicon glyphicon-triangle-bottom downvote-active vote", id: "downvote"
 
 - elsif user_signed_in?
   = link_to "", room_question_questions_voters_path(:question_id => question.id, :vote => "upvote"), :method => :post, remote: :true, class: "glyphicon glyphicon-triangle-top upvote vote", id: "upvote"
