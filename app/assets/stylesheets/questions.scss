@@ -19,6 +19,9 @@
 			-webkit-appearance: listitem;
 			background: transparent;
 	}
+	form {
+		margin-bottom: 0px;
+	}
 	.active.upvote{
 			color: $brand-success;
 			pointer-events: none;
