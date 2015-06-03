@@ -29,10 +29,10 @@
 	}
 }
 
-tr .action a {
+tr .action input {
 	visibility: hidden
 }
-tr:hover .action a {
+tr:hover .action input {
 	visibility: visible
 }
 
