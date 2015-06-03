@@ -40,7 +40,7 @@ tr:hover .action a {
 	color: $gray-light
 }
 .answered {
-	background-color: lighten($brand-info, 40%)
+	background-color: rgb(237, 237, 237);
 }
 .answered #upvote,
 .answered #downvote {
