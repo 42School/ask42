@@ -20,6 +20,6 @@ class QuestionsVotersController < ApplicationController
         RoomsUser.create(:user_id => current_user.id, :room_id => question.room_id)
       end
 	end
-    render :nothing => true
+		redirect_to :back
   end
 end

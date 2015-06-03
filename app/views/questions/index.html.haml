@@ -2,7 +2,6 @@
   = Room.find(params[:room_id]).name
 %p.text-center= link_to 'Ask a question', new_room_question_path, class: "btn btn-default"
 
-
 %table.table.table-hover
   %tbody.list
     - @questions.each do |question|
@@ -19,7 +18,8 @@
 
       -else
         %tr{data: {unanswered: !question.answered?}}
-          %td.votes= render "votes", question: question
+          %td.votes
+            =render "votes_nojs", question: question
           %td.question
             %p #{question.question}
             %p.small_info by #{question.user.login} #{time_ago_in_words(question.created_at)} ago

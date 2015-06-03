@@ -14,8 +14,10 @@
 			color: $brand-danger;
 			text-decoration: none
 	}
-	a {
+	input {
 			text-decoration: none;
+			-webkit-appearance: listitem;
+			background: transparent;
 	}
 	.active.upvote{
 			color: $brand-success;
