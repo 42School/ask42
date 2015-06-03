@@ -2,62 +2,31 @@
 // They will automatically be included in application.sass.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .votes {
-	text-align: center;
-	.glyphicon {
-		color: $gray;
+		text-align: center;
+		.glyphicon {
+				color: $gray;
 	}
 	.upvote:hover {
-		color: $brand-success;
-		text-decoration: none
+			color: $brand-success;
+			text-decoration: none
 	}
 	.downvote:hover {
-		color: $brand-danger;
-		text-decoration: none
-	}
-	.upvote-active {
-		color: $brand-success;
-	}
-	.downvote-active {
-		color: $brand-danger;
+			color: $brand-danger;
+			text-decoration: none
 	}
 	a {
-		text-decoration: none;
+			text-decoration: none;
 	}
-}
-.small_info {
-	color: $gray-light;
-	font-size: small
-}
-
-.small-elem {
-	border-radius: 2px;
-	padding-left: 3px;
-	padding-right: 3px;
-	margin-right: 4px;
-}
-.info {
-	color: $brand-info;
-	background-color: lighten($brand-info, 30%);
-}
-.success {
-	color: $brand-success;
-	background-color: lighten($brand-success, 30%);
-}
-.warning {
-	color: $brand-warning;
-	background-color: lighten($brand-warning, 30%);
-}
-
-textarea {
-	margin: 0;
-	margin-bottom: 10px
-}
-.glyphicon {
-	top: 0px;
-}
-
-.answered {
-	color: $gray-light
+	.active.upvote{
+			color: $brand-success;
+			pointer-events: none;
+			cursor: default;
+	}
+	.active.downvote {
+		color: $brand-danger;
+		pointer-events: none;
+		cursor: default;
+	}
 }
 
 tr .action a {
@@ -67,39 +36,8 @@ tr:hover .action a {
 	visibility: visible
 }
 
-.btn {
-	background: transparent;
-}
-.btn-danger {
-	color: $brand-danger;
-}
-.btn-success {
-	color: $brand-success;
-}
-.btn-info {
-	color: $brand-info;
-}
-
-a.room .room-elem {
-	color: $gray;
-}
-a.room:hover {
-	text-decoration: none;
-}
-li {
-	text-decoration: none;
-	border: solid $gray-lighter 1px;
-	margin: 10px;
-	padding: 10px;
-	list-style: none;
-}
-
-li:hover {
-	background-color: $gray-lighter;
-}
-.upvote-active, .downvote-active {
-		pointer-events: none;
-		cursor: default;
+.answered {
+	color: $gray-light
 }
 .answered {
 	background-color: lighten($brand-info, 40%)

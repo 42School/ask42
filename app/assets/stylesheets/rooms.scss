@@ -1,22 +1,3 @@
-body {
-	font-family: 'Open Sans', sans-serif;
-}
-
-.navbar {
-	border-radius: 0px;
-	background-color: $gray-dark;
-	border: 0px;
-	border-bottom: 3px;
-	border-color: $gray;
-	.home-title {
-		a {
-			font-weight: bold;
-			color: $gray-lighter;
-			border: 0px;
-		}
-	}
-}
-
 a.room_link {
 	text-decoration: none;
 	color: #207391;
@@ -30,10 +11,25 @@ td.pull-right {
 	text-align: right;
 }
 
-.btn {
-	border-radius: 2px;
-}
-
 .editor {
   display: hidden;
 }
+
+.room-elem:hover {
+	@include transition(all 0.1s ease-in-out);
+	background-color: $gray-lighter;
+}
+a.room .room-elem {
+	color: $gray;
+}
+a.room:hover {
+	text-decoration: none;
+}
+.room-elem {
+	text-decoration: none;
+	border: solid $gray-lighter 1px;
+	margin: 10px;
+	padding: 10px;
+	list-style: none;
+}
+

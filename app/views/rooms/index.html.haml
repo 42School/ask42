@@ -33,6 +33,7 @@
           .small_info
             = pluralize(room.questions.count, 'question')
             = pluralize(room.rooms_users.count, 'user')
+          .small_info
             -if user_signed_in? and @user_rooms.include?(room.id)
               %span.small-elem.warning
                 editor

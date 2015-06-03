@@ -1,27 +1,26 @@
 $('document').ready ->
 	$('.btn-answer').on 'click', ->
-			$(this).parents("tr").addClass("answered")
-  $('.vote').on 'click', ->
-    row = $(this).parents("tr:first")
-    elt = @parentElement.parentElement.querySelector(".vote_count")
-    td = row.children(".votes")
-    if @id == 'upvote' && td.children(".upvote-active").length == 0
-      if td.children(".downvote-active").length > 0
-        td.children(".downvote-active").addClass("downvote").removeClass("downvote-active")
-        td.children(".upvote").addClass("upvote-active").removeClass("upvote")
-        elt.innerHTML = parseInt(elt.innerHTML, 10) + 2
-      else
-        td.children(".upvote").addClass("upvote-active").removeClass("upvote")
-        elt.innerHTML = parseInt(elt.innerHTML, 10) + 1
-    else if @id == 'downvote' && td.children(".downvote-active").length == 0
-      if td.children('.upvote-active').length > 0
-        td.children(".upvote-active").addClass("upvote").removeClass("upvote-active")
-        td.children(".downvote").addClass("downvote-active").removeClass("downvote")
-        elt.innerHTML = parseInt(elt.innerHTML, 10) - 2
-      else
-        td.children(".downvote").addClass("downvote-active").removeClass("downvote")
-        elt.innerHTML = parseInt(elt.innerHTML, 10) - 1
-    order()
+		$(this).parents("tr").addClass("answered")
+
+	$('.vote').on 'click', ->
+		row = $(this).parents("tr:first")
+		td = row.children(".votes")
+		elt = @parentElement.parentElement.querySelector(".vote_count")
+		if @id == "upvote" 
+			if td.children(".active").length > 0
+				elt.innerHTML = parseInt(elt.innerHTML, 10) + 2
+			else
+				elt.innerHTML = parseInt(elt.innerHTML, 10) + 1
+				td.children(".downvote").toggleClass("active")
+		else
+			if td.children('.active').length > 0
+				elt.innerHTML = parseInt(elt.innerHTML, 10) - 2
+			else
+				elt.innerHTML = parseInt(elt.innerHTML, 10) - 1
+				td.children(".upvote").toggleClass("active")
+		td.children(".downvote").toggleClass("active")
+		td.children(".upvote").toggleClass("active")
+		order()
 
 @order = ->
   table = $("table:first tr[data-unanswered]")
