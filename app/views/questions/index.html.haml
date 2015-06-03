@@ -7,8 +7,7 @@
   %tbody.list
     - @questions.each do |question|
       %tr{data: {unanswered: !question.answered?}}
-        %td.votes
-          =render "votes", question: question
+        %td.votes= render "votes", question: question
 
         %td.question
           %p #{question.question}
