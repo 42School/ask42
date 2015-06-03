@@ -4,7 +4,7 @@
     = button_to "▲", room_question_questions_voters_path(:question_id => question.id, :vote => "upvote"), :method => :post, remote: :true, class: "glyphicon glyphicon-triangle-top upvote active vote", id: "upvote", label: "glyphicon glyphicon-triangle-top"
 
     .vote_count{:id => question.id}
-      =QuestionVoter.where(question_id: question.id).sum(:vote)
+      = QuestionVoter.where(question_id: question.id).sum(:vote)
     = button_to "▼", room_question_questions_voters_path(:question_id => question.id, :vote => "downvote"), :method => :post, remote: :true, class: "glyphicon glyphicon-triangle-bottom downvote vote", id: "downvote"
 
   - else

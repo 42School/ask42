@@ -1,6 +1,6 @@
 $('document').ready ->
 	$('.btn-answer').on 'click', ->
-		$(this).parents("tr").addClass("answered")
+    $(this).parents("tr").addClass("answered").removeAttr('data-unanswered')
 
 	$('.vote').on 'click', ->
 		row = $(this).parents("tr:first")
