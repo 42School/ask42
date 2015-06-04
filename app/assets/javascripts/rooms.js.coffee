@@ -1,17 +1,17 @@
 $('document').ready ->
-  $('.edit').on 'click', ->
-    elt = $(this).parents(".room-elem").find(".editable")
-    edit = $(this).parents(".room-elem").find('.editing-name')
-    elt.addClass("hidden")
-    edit.find("#editing").value = elt.innerHTML
-    edit.removeClass("hidden")
-    $(this).addClass("disabled")
-    edit.find(".form-group").find("input").focus()
+	$('.edit').on 'click', ->
+		elt = $(this).parents(".room-elem").find(".editable")
+		edit = $(this).parents(".room-elem").find('.editing-name')
+		elt.addClass("hidden")
+		edit.find("#editing").value = elt.innerHTML
+		edit.removeClass("hidden")
+		$(this).addClass("disabled")
+		edit.find(".form-group").find("input").focus()
 
-  $('.saving').on 'click', ->
-    elt = $(this).parents(".room-elem").find(".editable")
-    edit = $(this).parents(".room-elem").find('.editing-name')
-    elt.removeClass("hidden")
-    elt.find("a").html(edit.find(".form-group").find("input").val())
-    edit.addClass("hidden")
-    edit.parent().find(".edit").removeClass("disabled")
+	$('.saving').on 'click', ->
+		elt = $(this).parents(".room-elem").find(".editable")
+		edit = $(this).parents(".room-elem").find('.editing-name')
+		elt.removeClass("hidden")
+		elt.find("a").html(edit.find(".form-group").find("input").val())
+		edit.addClass("hidden")
+		edit.parent().find(".edit").removeClass("disabled")

@@ -20,7 +20,7 @@
 			background: transparent;
 	}
 	form {
-		margin-bottom: 0px;
+			margin-bottom: 0px;
 	}
 	.active.upvote{
 			color: $brand-success;
@@ -28,29 +28,29 @@
 			cursor: default;
 	}
 	.active.downvote {
-		color: $brand-danger;
-		pointer-events: none;
-		cursor: default;
+			color: $brand-danger;
+			pointer-events: none;
+			cursor: default;
 	}
 }
 
 tr .action input {
-	visibility: hidden
+		visibility: hidden
 }
 tr:hover .action input {
-	visibility: visible
+		visibility: visible
 }
 
 .answered {
-	color: $gray-light
+		color: $gray-light
 }
 .answered {
-	background-color: rgb(237, 237, 237);
+		background-color: rgb(237, 237, 237);
 }
 .answered #upvote,
 .answered #downvote {
-	visibility: hidden;
+		visibility: hidden;
 }
 .answered .btn-info {
-	visibility: hidden !important;
+		visibility: hidden !important;
 }

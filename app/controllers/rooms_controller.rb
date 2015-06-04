@@ -1,51 +1,51 @@
 class RoomsController < ApplicationController
-  def index
-    @rooms = Room.all.order(:id)
+	def index
+		@rooms = Room.all.order(:id)
 		if user_signed_in?
-				@user_questions = Question.where(user_id: current_user.id)
-				@user_rooms = RoomsUser.where(user_id: current_user.id, editor: true).pluck(:room_id)
+			@user_questions = Question.where(user_id: current_user.id)
+			@user_rooms = RoomsUser.where(user_id: current_user.id, editor: true).pluck(:room_id)
 		end
-  end
+	end
 
-  def show
-    @room = Room.find(params[:room][:id])
-  end
+	def show
+		@room = Room.find(params[:room][:id])
+	end
 
-  def new
-    redirect_to root_path unless user_signed_in? and current_user.admin?
-    @room = Room.new
-  end
+	def new
+		redirect_to root_path unless user_signed_in? and current_user.admin?
+		@room = Room.new
+	end
 
-  def create
-    redirect_to root_path unless user_signed_in? and current_user.admin?
-    @room = Room.new(params[:room].permit(:name))
-    @room.save
-    redirect_to rooms_path
-  end
+	def create
+		redirect_to root_path unless user_signed_in? and current_user.admin?
+		@room = Room.new(params[:room].permit(:name))
+		@room.save
+		redirect_to rooms_path
+	end
 
-  def edit
-    redirect_to root_path unless user_signed_in? and current_user.admin?
-    @room = Room.find(params[:id])
+	def edit
+		redirect_to root_path unless user_signed_in? and current_user.admin?
+		@room = Room.find(params[:id])
 
-    respond_to do |format|
-      if @room.update(:name => params[:room][:name])
-        format.js
-      end
-    end
-  end
+		respond_to do |format|
+			if @room.update(:name => params[:room][:name])
+				format.js
+			end
+		end
+	end
 
-  def update
-    redirect_to root_path unless user_signed_in? and current_user.admin?
-    @room = Room.find(params[:id])
+	def update
+		redirect_to root_path unless user_signed_in? and current_user.admin?
+		@room = Room.find(params[:id])
 
-    @room.update_attributes(params[:room].permit(:name, rooms_users_attributes: [:user_id, :_destroy, :id, :editor]))
-    redirect_to rooms_path
-  end
+		@room.update_attributes(params[:room].permit(:name, rooms_users_attributes: [:user_id, :_destroy, :id, :editor]))
+		redirect_to rooms_path
+	end
 
-  def destroy
-    redirect_to rooms_path unless user_signed_in? and current_user.admin?
-    @room = Room.find(params[:id])
-    @room.destroy
-    redirect_to rooms_path
-  end
+	def destroy
+		redirect_to rooms_path unless user_signed_in? and current_user.admin?
+		@room = Room.find(params[:id])
+		@room.destroy
+		redirect_to rooms_path
+	end
 end
