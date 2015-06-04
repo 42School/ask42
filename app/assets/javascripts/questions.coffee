@@ -11,7 +11,7 @@ $('document').ready ->
 				elt.innerHTML = parseInt(elt.innerHTML, 10) + 2
 			else
 				elt.innerHTML = parseInt(elt.innerHTML, 10) + 1
-				td.children(".downvote").toggleClass("active")
+			  td.children(".downvote").toggleClass("active")
 		else
 			if td.children('.active').length > 0
 				elt.innerHTML = parseInt(elt.innerHTML, 10) - 2
@@ -34,3 +34,4 @@ $('document').ready ->
 @answered = ->
   unanswered = $("table:first tr:not([data-unanswered])")
   unanswered.addClass("answered")
+
