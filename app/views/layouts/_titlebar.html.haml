@@ -1,10 +1,12 @@
-.navbar.navbar-default
+.navbar.navbar-default.navbar-fixed-top
   .container
     .navbar-left.navbar-brand.home-title
       = link_to "Ask42", root_path, class: "navbar-brand"
-    .navbar-text.navbar-right.navbar-brand
-      - if user_signed_in?
+    - if user_signed_in?
+      .navbar-text.navbar-right.navbar-brand
         = current_user.login
+      .navbar-text.navbar-right.navbar-brand
         = button_to "Sign out", destroy_user_session_path, :method => :delete, class: "btn-xs btn btn-danger"
-      - else
+    - else
+      .navbar-text.navbar-right.navbar-brand
         = button_to "Sign in", new_user_session_path, class: "btn btn-success btn-xs"

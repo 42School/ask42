@@ -18,22 +18,22 @@
 //= require_tree .
 
 window.NestedFormEvents.prototype.insertFields = function(content, assoc, link) {
-    var $tr = $(link).closest('tr');
-    return $(content).insertBefore($tr);
+	var $tr = $(link).closest('tr');
+	return $(content).insertBefore($tr);
 }
 
 $(function() {
-    if ($(".vote_count").length > 0) {
-        setTimeout(reloadCounterView, 100);
-        setInterval(order, 1000);
-    }
+	if ($(".vote_count").length > 0) {
+		setTimeout(reloadCounterView, 100);
+		setInterval(order, 1000);
+	}
 })
 
 function reloadCounterView (question_id) {
-    for (i = 0; i < $(".vote_count").length; i++) {
-        $.getScript("/rooms/" + $("h1").data().roomId + "/questions/" + $(".vote_count")[i].id + "/questions_voters.js?question_id=" + $(".vote_count")[i].id);
-    }
-    order();
-    answered();
-    setTimeout(reloadCounterView, 10000);
+	for (i = 0; i < $(".vote_count").length; i++) {
+		$.getScript("/rooms/" + $("h1").data().roomId + "/questions/" + $(".vote_count")[i].id + "/questions_voters.js?question_id=" + $(".vote_count")[i].id);
+	}
+	order();
+	answered();
+	setTimeout(reloadCounterView, 10000);
 }
