@@ -1,4 +1,4 @@
-%h1.text-center{data: {url: room_questions_path(params[:room_id]), }}
+%h1.text-center{data: {url: room_questions_path(params[:room_id])}}
   = Room.find(params[:room_id]).name
 %p.text-center= link_to 'Ask a question', new_room_question_path, class: "btn btn-default"
 

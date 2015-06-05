@@ -1,16 +1,17 @@
 class QuestionsController < ApplicationController
 	def index
-    if params[:last]
+    if params[:id]
       puts "==================================================================="
       puts "entering new question"
       puts "==================================================================="
-      @questions = Question.joins("LEFT JOIN question_voters ON question_voters.question_id = questions.id").group("questions.id").where("questions.room_id = ? AND questions.id > ?", params[:room_id], params[:id]).order("questions.answered, sum(question_voters.vote)").reverse
+      @questions = Question.joins("LEFT JOIN question_voters ON question_voters.question_id = questions.id").group("questions.id").where("questions.room_id = ? AND questions.id > ?", params[:room_id], params[:id].to_i).order("questions.answered, sum(question_voters.vote)").reverse
+      puts "New Question!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" if @questions
     else
       @questions = Question.joins("LEFT JOIN question_voters ON question_voters.question_id = questions.id").group("questions.id").where("questions.room_id = ?", params[:room_id]).order("questions.answered, sum(question_voters.vote)").reverse
     end
-			if user_signed_in?
-				@user_is_editor = RoomsUser.where(user_id: current_user.id, room_id: params[:room_id], editor: true).first
-			end
+    if user_signed_in?
+      @user_is_editor = RoomsUser.where(user_id: current_user.id, room_id: params[:room_id], editor: true).first
+    end
 	end
 
 	def new

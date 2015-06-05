@@ -36,8 +36,7 @@ $('document').ready ->
 
   pollingQuestion: ->
     console.log "polling Question"
-    $.get($("h1").data('url'), last: $("tr").data('last'))
-    debugger
+    $.getScript($("h1").data('url'), id: Math.max.apply null, $('tr').map(-> $(this).data().id ))
 
   orderQuestions: ->
     table = $("table:first tr[data-unanswered]")
