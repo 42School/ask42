@@ -1,4 +1,4 @@
-$('document').ready ->
+jQuery ->
 	$('.btn-answer').on 'click', ->
 		$(this).parents("tr").addClass("answered").removeAttr('data-unanswered')
 
@@ -8,7 +8,7 @@ $('document').ready ->
 		elt = @parentElement.parentElement.querySelector(".vote_count")
 		upvote = td.find(".upvote")
 		downvote = td.find(".downvote")
-		if @id == "upvote" 
+		if @id == "upvote"
 			if td.find(".active").length > 0
 				elt.innerHTML = parseInt(elt.innerHTML, 10) + 2
 			else
@@ -22,20 +22,13 @@ $('document').ready ->
 				upvote.toggleClass("active")
 		downvote.toggleClass("active")
 		upvote.toggleClass("active")
-		order()
+		debugger
 
 @QuestionsHandler =
   start: ->
-    console.log "Starting"
-#    setInterval @pollingCounter, 5000
     setInterval @pollingQuestion, 5000
 
-#  pollingCounter: ->
-#    $.getScript("/rooms/" + $("h1").data().roomId + "/questions/" + $(".vote_count")[i].id + "/questions_voters.js?question_id=" + $(".vote_count")[i].id)
-#    @orderQuestions
-
   pollingQuestion: ->
-    console.log "polling Question"
     $.getScript($("h1").data('url'), id: Math.max.apply null, $('tr').map(-> $(this).data().id ))
 
   orderQuestions: ->
@@ -52,12 +45,5 @@ $('document').ready ->
 
 jQuery ->
   if $(".vote_count").length > 0
-    console.log "entering first loop"
     QuestionsHandler.start()
-
-
-#answered();
-#setTimeout(reloadCounterView, 10000);
-
-
 

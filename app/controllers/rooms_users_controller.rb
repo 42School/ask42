@@ -9,7 +9,6 @@ class RoomsUsersController < ApplicationController
 		@users_hash = {}
 		@subscriptable_users = User.where.not(:id => @room.rooms_users.map {|x| x.user.id})
 		@subscriptable_users.each {|user| @users_hash[user.login] = user.id}
-
 	end
 
 	def destroy
