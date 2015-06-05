@@ -1,6 +1,6 @@
-- if user_signed_in? and question.question_voters.where(user_id: current_user.id).last
+- votes = QuestionVoter.where(question_id: question.id).sum(:vote)
 
-  - votes = QuestionVoter.where(question_id: question.id).sum(:vote)
+- if user_signed_in? and question.question_voters.where(user_id: current_user.id).last
   - if question.question_voters.where(user_id: current_user.id).last.vote > 0
     = button_to "▲", room_question_questions_voters_path(:question_id => question.id, :vote => "upvote"), :method => :post, remote: :true, class: "glyphicon glyphicon-triangle-top upvote active vote", id: "upvote", label: "glyphicon glyphicon-triangle-top"
 

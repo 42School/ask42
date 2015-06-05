@@ -1,0 +1,8 @@
+- questions.each do |question|
+  - if question.answered
+    %tr.answered{data: {last: question.created_at}}
+      = render "question_detail", question: question
+
+  - else
+    %tr{data: {unanswered: !question.answered?, last: question.created_at}}
+      = render "question_detail", question: question
