@@ -1,8 +1,12 @@
-jQuery ->
-	$('.btn-answer').on 'click', ->
+$ ->
+	if $(".vote_count").length > 0
+		QuestionsHandler.start()
+
+	$('.container').on 'click', '.btn-answer', ->
 		$(this).parents("tr").addClass("answered").removeAttr('data-unanswered')
 
-	$('.vote').on 'click', ->
+	$('.container').on 'click', '.vote', ->
+		console.log("ciucodis")
 		row = $(this).parents("tr:first")
 		td = row.children(".votes")
 		elt = @parentElement.parentElement.querySelector(".vote_count")
@@ -22,7 +26,6 @@ jQuery ->
 				upvote.toggleClass("active")
 		downvote.toggleClass("active")
 		upvote.toggleClass("active")
-		debugger
 
 @QuestionsHandler =
   start: ->
@@ -43,7 +46,4 @@ jQuery ->
     unanswered = $("table:first tr:not([data-unanswered])")
     unanswered.addClass("answered")
 
-jQuery ->
-  if $(".vote_count").length > 0
-    QuestionsHandler.start()
 
