@@ -6,7 +6,6 @@ $ ->
 		$(this).parents("tr").addClass("answered").removeAttr('data-unanswered')
 
 	$('.container').on 'click', '.vote', ->
-		console.log "ho"
 		row = $(this).parents("tr:first")
 		td = row.children(".votes")
 		elt = @parentElement.parentElement.querySelector(".vote_count")
