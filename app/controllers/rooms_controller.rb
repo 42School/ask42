@@ -8,7 +8,7 @@ class RoomsController < ApplicationController
 	end
 
 	def show
-		@room = Room.find(params[:room][:id])
+		redirect_to room_questions_path(params[:id])
 	end
 
 	def new

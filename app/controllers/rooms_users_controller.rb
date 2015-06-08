@@ -12,6 +12,7 @@ class RoomsUsersController < ApplicationController
 	end
 
 	def destroy
+		redirect_to root_path unless user_signed_in? and (current_user.admin? or current_user.editor?)
 		@rooms_user = RoomsUser.find(params[:id])
 		@rooms_user.delete
 	end
