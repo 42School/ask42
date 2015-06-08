@@ -6,7 +6,7 @@ $ ->
 		$(this).parents("tr").addClass("answered").removeAttr('data-unanswered')
 
 	$('.container').on 'click', '.vote', ->
-		console.log("ciucodis")
+		console.log "ho"
 		row = $(this).parents("tr:first")
 		td = row.children(".votes")
 		elt = @parentElement.parentElement.querySelector(".vote_count")
@@ -45,5 +45,3 @@ $ ->
   answered: ->
     unanswered = $("table:first tr:not([data-unanswered])")
     unanswered.addClass("answered")
-
-
